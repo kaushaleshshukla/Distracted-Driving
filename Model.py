@@ -263,7 +263,7 @@ with tf.Session() as sess:
     
     df = pd.DataFrame(result, columns=['img','c0','c1','c2','c3','c4','c5','c6','c7','c8','c9'])
     
-    df.to_csv('result_BN_with11Layers_dropout.csv',index=False)
+    df.to_csv('result.csv',index=False)
         
 
 
