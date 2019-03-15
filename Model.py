@@ -136,17 +136,20 @@ with tf.variable_scope('Layer11'):
 conv_l11 = tf.nn.max_pool(conv_l11 , ksize=[1,3,4,1] , strides=[1,3,4,1] , padding='SAME' , name='Maxpool6')
 
 
-#Fully connected layer 1
 flatten = tf.contrib.layers.flatten(conv_l11)
 
+# Fully connected layer 1
 with tf.variable_scope('fclayer1'):
-    fc1= fully_connected(flatten, 5*5*512, 1024, prob=0.6)  
+    fc1= fully_connected(flatten, 5*5*512, 1024, prob=0.6)
+    
+# Fully connected layer 2
 with tf.variable_scope('fclayer2'):
     fc2 = fully_connected(fc1, 1024, 512, prob=0.7)
 
+# Fully connected layer 3
 with tf.variable_scope('fclayer3'):
     fc3 = fully_connected(fc2, 512, 10, activation=None)
-#Fully connected layer 2
+
 
 #Softmax layer
 y_ = tf.nn.softmax(fc3, name='softmax_output')
