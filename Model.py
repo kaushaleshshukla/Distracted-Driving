@@ -21,7 +21,7 @@ def prepare_data(data):
     data = data.drop(['subject'] , axis=1)
     data = pd.get_dummies(data , columns=['classname'])
     
-#    Suffing data
+#    Suffling data
     data = data.iloc[ np.random.permutation( len(data) ) ]
     
     img_list = data['img'].values
@@ -86,7 +86,7 @@ y = tf.placeholder(dtype=tf.float32 , shape=[None,10])
 #Resizing input images
 X_resized = tf.image.resize_images(X, [240,320], method=tf.image.ResizeMethod.NEAREST_NEIGHBOR)
 
-#Noramlization of Input images
+#Normalization of Input images
 X_normalized = X_resized/255 
 
 #Layer 1
@@ -197,7 +197,7 @@ with tf.Session() as sess:
             sess.run(training_op , feed_dict={X:batch_x , y:batch_y} , options=run_options)
             b = time.time()
             training_time = b-a
-#            Evaluating Performance
+#        Evaluating Performance after each 25 iterations
             if(ite%25==0):
                 
                 score , loss= sess.run([accuracy , cross_entropy] , feed_dict={X:batch_x , y:batch_y})
@@ -265,10 +265,3 @@ with tf.Session() as sess:
     
     df.to_csv('result.csv',index=False)
         
-
-
-
-
-
-
-
